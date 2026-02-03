@@ -60,6 +60,8 @@ h1 {
   font-size: 24px;
   cursor: pointer;
   color: #141414;
+  transition: 0.5s;
+
 }
 
 .select-task-button {
@@ -72,4 +74,18 @@ h1 {
   font-size: 24px;
   cursor: pointer;
   color: #141414;
+  transition: 0.4s;
+}
+
+.select-task-button:hover, .add-task-button:hover {
+  background-color: #537feebe;
+  color: #ffffff;
+}
+
+.select-task-button:active, .add-task-button:active {
+  transform: scale(0.98);
+}
+
+.main-content {
+  margin-top: 40px;
 }

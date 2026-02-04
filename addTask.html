@@ -1,25 +1,56 @@
 <!doctype html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>To Do List</title>
-    <link rel="stylesheet" href="css/style.css" />
-    <script defer src="js/script.js"></script>
-  </head>
-  <body>
-    <main>
-      <section>
-        <h1>React To-Do List</h1>
 
-        <div class="addTask-main-content">
-          <div class="title-text">
-            <h1>Adicionar uma nova tarefa:</h1>
-          </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>To Do List</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <script defer src="js/script.js"></script>
+</head>
 
-          
+<body>
+  <main>
+    <section>
+      <h1>React To-Do List</h1>
+
+      <div class="addTask-main-content">
+        <div class="title-text">
+          <h1>Adicionar uma nova tarefa:</h1>
         </div>
-      </section>
-    </main>
-  </body>
+
+        <div class="addTask-form">
+          <form>
+            <label for="task-name">Nome da Tarefa:</label>
+              <input type="text" id="task-name" name="task-name" required autofocus/>
+         
+
+            <label for="task-desc">Descrição:</label>
+              <textarea id="task-desc" name="task-desc" required></textarea>
+            
+
+            <label for="task-category">Categoria:</label>
+              <input type="text" id="task-category" name="task-category" required />
+            
+
+            <label for="task-date">Data:
+              <input type="date" id="task-date" name="task-date" required />
+            </label>
+
+            <label for="task-priority">Prioridade:
+              <select id="task-priority" name="task-priority" required>
+                <option value="baixa">Baixa</option>
+                <option value="media">Média</option>
+                <option value="alta">Alta</option>
+              </select>
+            </label>
+
+            <button type="submit">Adicionar Tarefa</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+
 </html>

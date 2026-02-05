@@ -124,9 +124,9 @@ p {
 .addTask-main-content {
   background-color: #ffffff;
   width: 1100px;
-  height: 529px;
+  height: auto;
   border-radius: 20px;
-  padding: 30PX 50px;
+  padding: 30px 50px;
   margin-top: 25px;
 }
 
@@ -147,12 +147,60 @@ label {
   font-weight: 400;
   font-size: 24px;
   color: #141414;
+  margin-top: 10px;
 }
 
-input, label > input, textarea {
+input,
+label > input,
+textarea {
   border: 2px solid #adadad;
   border-radius: 5px;
   color: #141414;
   font-size: 18px;
   font-weight: 400;
+}
+
+#task-priority {
+  padding: 5px 10px;
+  border-radius: 10px;
+}
+
+#task-date {
+  border-radius: 10px;
+  padding: 0 10px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 35px;
+}
+
+.addTask-button {
+  display: inline-block;
+  width: 50%;
+  height: 50px;
+  border: none;
+  background-color: #172956;
+  border-radius: 20px;
+  font-weight: 400;
+  font-size: 24px;
+  cursor: pointer;
+  color: #ffffff;
+  transition: 0.5s;
+}
+
+.addTask-button:hover {
+  opacity: 0.9;
+}
+
+.addTask-button:active {
+  transform: scale(0.98);
+}
+
+.return-link {
+  color: rgb(12, 12, 189);
+  text-decoration: underline;
+  width: 10%;
 }

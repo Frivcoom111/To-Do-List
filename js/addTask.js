@@ -25,7 +25,9 @@ function addTask() {
 
     localStorage.setItem("tasks", JSON.stringify(tasks));
 
-    clearForm()
+    clearForm();
+
+    window.location.href = "index.html";
 }
 
 function clearForm() {

@@ -204,3 +204,17 @@ textarea {
   text-decoration: underline;
   width: 10%;
 }
+
+td {
+  font-size: 18px;
+}
+
+.icon {
+  display: inline-block;
+  margin: 0 5px;
+  transition: 0.5s;
+}
+
+.icon:hover {
+  transform: translateY(-2px);
+}

@@ -1,6 +1,42 @@
-const addTaskButton = document.querySelector(".addTask-button");
-
 let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
+function loadTasks() {
+  const tableBody = document.querySelector(".table-body");
+  const paragraph = document.querySelector(".paragraph");
+
+  if (!Array.isArray(tasks)) {
+    tasks = [];
+  }
+
+  tableBody.innerHTML = tasks.map((task) => {
+      return `
+        <tr>
+            <td>${task.name}</td>
+            <td>${task.desc}</td>
+            <td>${task.category}</td>
+            <td>${formatDate(task.date)}</td>
+            <td>${task.completed ? "Concluída" : "Pendente"}</td>
+            <td>
+                <img src="assets/editar.png" class="icon" onclick="editTask(${task.id})">
+                <img src="assets/delete.png" class="icon" onclick="deleteTask(${task.id})">
+            </td>
+        </tr>
+    `;
+    }).join("");
+
+  if (tasks.length > 0) {
+    paragraph.innerHTML = "";
+  } else {
+    paragraph.innerHTML = "Nenhuma tarefa encontrada!";
+  }
+}
+
+function formatDate(date) {
+  if (!date) return "";
+  return new Date(date).toLocaleDateString("pt-BR");
+}
+
+const addTaskButton = document.querySelector(".addTask-button");
 
 function addTask() {
     const taskName = document.querySelector("#task-name").value || "";
@@ -22,11 +58,8 @@ function addTask() {
     };
 
     tasks.push(newTask);
-
     localStorage.setItem("tasks", JSON.stringify(tasks));
-
     clearForm();
-
     window.location.href = "index.html";
 }
 
@@ -38,4 +71,8 @@ function clearForm() {
     document.querySelector("#task-priority").value = "";
 }
 
-addTaskButton.addEventListener("click", addTask);
+if (addTaskButton) {
+    addTaskButton.addEventListener("click", addTask);
+}
+
+loadTasks();

@@ -31,8 +31,7 @@ class AuthController {
 
       response.status(200).json({
         message: "Logado com sucesso.",
-        token: user.token,
-        user: user.user,
+        token: user.token
       });
     } catch (error) {
       next(error);

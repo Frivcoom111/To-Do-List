@@ -11,6 +11,7 @@ import { Input } from "./ui/input";
 import { z } from "zod";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import api from "@/services/api.js"
 
 const loginSchema = z.object({
   email: z.string().email("E-mail inválido."),
@@ -26,7 +27,17 @@ function LoginForm() {
     },
   });
 
-  function onSubmit(data) {
+  async function onSubmit(data) {
+    try {
+      const response = await api.post("auth/login", data);
+
+      const token = response.data.token;
+
+      console.log(token);
+    } catch (error) {
+      console.log(error);
+    }
+
     console.log(data);
   }
 

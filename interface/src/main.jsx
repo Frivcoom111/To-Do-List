@@ -6,6 +6,6 @@ import SignupPage from './pages/signup/SignupPage'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <SignupPage />  
+    <LoginPage />  
   </StrictMode>,
 )

@@ -12,6 +12,7 @@ import { z } from "zod";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import api from "@/services/api.js"
+import { Link, Navigate } from "react-router-dom";
 
 const loginSchema = z.object({
   email: z.string().email("E-mail inválido."),
@@ -33,7 +34,10 @@ function LoginForm() {
 
       const token = response.data.token;
 
-      console.log(token);
+      // Armazene o token no localStorage ou em um cookie
+      localStorage.setItem("token", token);
+
+      <Navigate to="/dashboard" />;
     } catch (error) {
       console.log(error);
     }
@@ -101,7 +105,7 @@ function LoginForm() {
               <Field>
                 <Button type="submit">Entrar</Button>
                 <FieldDescription className="text-center">
-                  Não tem uma conta? <a href="#">Cadastrar-se</a>
+                  Não tem uma conta? <Link to="/signup">Cadastrar-se</Link>
                 </FieldDescription>
               </Field>
             </FieldGroup>

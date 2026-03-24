@@ -14,7 +14,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 const loginSchema = z.object({
   email: z.string().email("E-mail inválido."),
-  password: z.string().min(6, "A senha deve ter pelo menos 6 caracteres."),
+  password: z.string().min(8, "A senha deve ter pelo menos 8 caracteres."),
 });
 
 function LoginForm() {
@@ -43,28 +43,49 @@ function LoginForm() {
           <form onSubmit={form.handleSubmit(onSubmit)}>
             <FieldGroup>
               <Field>
-                <Controller>
-                  <FieldLabel htmlFor="email">Email:</FieldLabel>
-                  <Input
-                    {...Field}
-                    id="email"
-                    type="email"
-                    placeholder="m@example.com"
-                    required
-                  />
-                </Controller>
+                <FieldLabel htmlFor="email">Email:</FieldLabel>
+                <Controller
+                  name="email"
+                  control={form.control}
+                  render={({ field, fieldState }) => (
+                    <>
+                      <Input
+                        {...field}
+                        id="email"
+                        type="email"
+                        placeholder="m@example.com"
+                        required
+                      />
+                      {fieldState.error && (
+                        <p className="text-red-500 text-sm">
+                          {fieldState.error.message}
+                        </p>
+                      )}
+                    </>
+                  )}
+                />
               </Field>
               <Field>
-                <div className="flex items-center">
-                  <FieldLabel htmlFor="password">Senha:</FieldLabel>
-                  <a
-                    href="#"
-                    className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
-                  >
-                    Esqueceu sua senha?
-                  </a>
-                </div>
-                <Input id="password" type="password" required />
+                <FieldLabel htmlFor="password">Senha:</FieldLabel>
+                <Controller
+                  name="password"
+                  control={form.control}
+                  render={({ field, fieldState }) => (
+                    <>
+                      <Input
+                        {...field}
+                        id="password"
+                        type="password"
+                        required
+                      />
+                      {fieldState.error && (
+                        <p className="text-red-500 text-sm">
+                          {fieldState.error.message}
+                        </p>
+                      )}
+                    </>
+                  )}
+                />
               </Field>
               <Field>
                 <Button type="submit">Entrar</Button>

@@ -13,7 +13,7 @@ class AuthController {
 
       return response.status(201).json({
         message: "Usuário criado com sucesso.",
-        user: userCreated.user,
+        user: userCreated.user
       });
     } catch (error) {
       next(error);
@@ -31,7 +31,7 @@ class AuthController {
 
       response.status(200).json({
         message: "Logado com sucesso.",
-        token: user.token
+        token: user.token,
       });
     } catch (error) {
       next(error);

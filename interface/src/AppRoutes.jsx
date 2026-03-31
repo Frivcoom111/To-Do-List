@@ -1,24 +1,14 @@
-import { Routes, Route, Navigate } from "react-router-dom";
-import LoginPage from "./pages/LoginPage";
-import SignupPage from "./pages/SignupPage";
-import DashboardPage from "./pages/DashboardPage";
-import PrivateRoute from "./components/PrivateRoutes";
+import LoginPage from "./pages/login/LoginPage";
+import SignupPage from "./pages/signup/SignupPage";
+import { Routes, Route } from "react-router-dom";
 
 function AppRoutes() {
-    return (
-        <Routes>
-            <Route path="/" element={<LoginPage />} />
-            <Route path="/signup" element={<SignupPage />} />
-            <Route path="/dashboard-teste" element={<DashboardPage />} />
-            <Route path="/dashboard" element={
-                <PrivateRoute>
-                    <DashboardPage />
-                </PrivateRoute>
-            } >
-                <Route index element={<Navigate to="home" replace/>}/>
-            </Route>
-        </Routes>
-    )
+  return (
+    <Routes>
+      <Route path="/" element={<LoginPage/>}/>
+      <Route path="/signup" element={<SignupPage/>}/>
+    </Routes>
+  )
 }
 
 export default AppRoutes;

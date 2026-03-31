@@ -1,0 +1,221 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Syne:wght@500;700;800&display=swap");
+
+:root {
+  --bg-main: #f2f5f8;
+  --bg-soft: #d3e3f0;
+  --ink-900: #182127;
+  --ink-700: #3a4852;
+  --ink-500: #60707d;
+  --white: #ffffff;
+  --line: #d2dae1;
+  --cta: #ff6f3c;
+  --cta-hover: #e95d2d;
+  --focus: #2f9ed8;
+}
+
+.login-page {
+  min-height: 100vh;
+  padding: 2rem;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(circle at 18% 15%, #ffcf95 0%, transparent 28%),
+    radial-gradient(circle at 85% 88%, #9bd5f8 0%, transparent 32%),
+    linear-gradient(135deg, var(--bg-main) 0%, var(--bg-soft) 100%);
+  overflow: hidden;
+}
+
+.login-card {
+  width: min(100%, 1080px);
+  min-height: 620px;
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  background-color: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(9px);
+  border-radius: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 24px 60px rgba(24, 33, 39, 0.2);
+  animation: rise-in 0.75s ease;
+}
+
+.login-banner {
+  padding: clamp(2rem, 3vw, 3.25rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: var(--ink-900);
+  border-right: 1px solid rgba(24, 33, 39, 0.08);
+}
+
+.badge {
+  width: fit-content;
+  padding: 0.4rem 0.8rem;
+  border-radius: 999px;
+  margin-bottom: 1.2rem;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: #0f4f69;
+  background-color: rgba(47, 158, 216, 0.14);
+}
+
+.login-banner h1 {
+  font-family: "Syne", sans-serif;
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+}
+
+.login-banner p {
+  max-width: 38ch;
+  color: var(--ink-700);
+  font-size: 1.02rem;
+  line-height: 1.55;
+}
+
+.login-panel {
+  padding: clamp(2rem, 3vw, 3.25rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: "Outfit", sans-serif;
+}
+
+.login-panel h2 {
+  font-family: "Syne", sans-serif;
+  color: var(--ink-900);
+  font-size: 2rem;
+  margin-bottom: 0.4rem;
+}
+
+.subtitle {
+  color: var(--ink-500);
+  margin-bottom: 1.7rem;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.login-form label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--ink-700);
+}
+
+.login-form input {
+  width: 100%;
+  height: 46px;
+  padding: 0 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background-color: var(--white);
+  font-family: "Outfit", sans-serif;
+  font-size: 0.95rem;
+  transition:
+    border-color 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.login-form input:focus {
+  outline: none;
+  border-color: var(--focus);
+  box-shadow: 0 0 0 3px rgba(47, 158, 216, 0.2);
+}
+
+.forgot-link {
+  width: fit-content;
+  margin: 0.2rem 0 0.8rem;
+  color: #0f6f9a;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.forgot-link:hover {
+  text-decoration: underline;
+}
+
+.login-form button {
+  height: 48px;
+  border: none;
+  border-radius: 12px;
+  font-family: "Outfit", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--white);
+  background-color: var(--cta);
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.login-form button:hover {
+  transform: translateY(-1px);
+  background-color: var(--cta-hover);
+}
+
+.register-text {
+  margin-top: 0.8rem;
+  color: var(--ink-500);
+  font-size: 0.94rem;
+}
+
+.register-text a {
+  color: #0f6f9a;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.register-text a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .login-page {
+    padding: 1rem;
+  }
+
+  .login-card {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .login-banner {
+    border-right: none;
+    border-bottom: 1px solid rgba(24, 33, 39, 0.08);
+  }
+
+  .login-banner h1 {
+    font-size: clamp(1.8rem, 8vw, 2.4rem);
+  }
+}
+
+@media (max-width: 460px) {
+  .login-page {
+    padding: 0.75rem;
+  }
+
+  .login-banner,
+  .login-panel {
+    padding: 1.25rem;
+  }
+
+  .login-panel h2 {
+    font-size: 1.65rem;
+  }
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(22px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}

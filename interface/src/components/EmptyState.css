@@ -1,0 +1,49 @@
+/* Empty State */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 300px;
+  gap: 1rem;
+}
+
+.empty-icon {
+  font-size: 4rem;
+  opacity: 0.6;
+}
+
+.empty-state h3 {
+  font-family: "Syne", sans-serif;
+  font-size: 1.5rem;
+  color: #1f2a33;
+  margin: 0;
+}
+
+.empty-state p {
+  font-size: 0.95rem;
+  color: #60707d;
+  max-width: 40ch;
+  line-height: 1.6;
+}
+
+.empty-state-btn {
+  margin-top: 1rem;
+  font-family: "Outfit", sans-serif;
+  background: linear-gradient(135deg, #ff6f3c 0%, #e95d2d 100%);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.8rem;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(255, 111, 60, 0.3);
+}
+
+.empty-state-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(255, 111, 60, 0.4);
+}

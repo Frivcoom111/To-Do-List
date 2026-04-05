@@ -1,16 +1,39 @@
 import "./SignupPage.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import api from "../../services/api";
 
 function SignupPage() {
+  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    console.log(name, email, password, confirmPassword);
+
+    try {
+      if (password !== confirmPassword)
+        return alert("Senhas estão diferentes.");
+
+      const response = await api.post(
+        "auth/register",
+        {
+          name: name,
+          email: email,
+          password: password,
+        },
+        { public: true },
+      );
+
+      alert(response.data.message);
+
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+      alert("Erro ao criar usuário.");
+    }
   }
 
   return (

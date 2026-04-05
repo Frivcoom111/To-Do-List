@@ -4,7 +4,7 @@ import { useState } from "react";
 import api from "../../services/api";
 
 function LoginPage() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -12,16 +12,20 @@ function LoginPage() {
     e.preventDefault();
 
     try {
-      const response = await api.post("auth/login", {
-        email: email,
-        password: password,
-      });
+      const response = await api.post(
+        "auth/login",
+        {
+          email: email,
+          password: password,
+        },
+        { public: true },
+      );
 
       const token = response.data.token;
 
       localStorage.setItem("token", token);
 
-      navigate("/signup");
+      navigate("/home");
     } catch (error) {
       console.log(error);
       alert("Erro ao tentar logar.");

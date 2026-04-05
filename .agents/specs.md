@@ -182,29 +182,4 @@ Implementar fluxo completo de autenticacao no frontend:
 4. Botao de logout removendo token.
 
 
-<div class="loader">Carregando...</div>
 
-/* Esconde o loading por padrão */
-.loader {
-  display: none;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 24px;
-}
-
-/* Quando tiver a classe 'loading', mostra */
-body.loading .loader {
-  display: block;
-}
-
-/* Spinner girando (opcional) */
-.loader::after {
-  content: "⏳";
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}

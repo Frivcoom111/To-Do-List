@@ -17,25 +17,22 @@ function hideLoader() {
 
 // Quando COMEÇAR a requisição
 api.interceptors.request.use((config) => {
+  activeRequests += 1;
+  showLoader();
+  
   // Rotas que não precisam de token
   if (config.public) {
     return config;
   }
 
   const token = localStorage.getItem("token");
-
   if (!token) {
+    activeRequests = Math.max(0, activeRequests - 1);
+    if (activeRequests === 0) hideLoader();
     return Promise.reject(new Error("Token não encontrado."));
   }
 
   config.headers.Authorization = `Bearer ${token}`;
-
-  return config;
-});
-
-api.interceptors.request.use((config) => {
-  activeRequests += 1;
-  showLoader();
   return config;
 });
 

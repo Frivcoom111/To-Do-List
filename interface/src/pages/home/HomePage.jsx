@@ -40,6 +40,17 @@ function HomePage() {
     };
   }, []);
 
+  async function handleDeleteTask(task) {
+    if (!confirm(`Deseja realmente deletar "${task.title}"?`)) return;
+    try {
+      await api.delete(`task/delete/${task.id}`);
+      setTasks((prev) => prev.filter((t) => t.id !== task.id));
+    } catch (error) {
+      console.log(error);
+      alert("Erro ao deletar tarefa.");
+    }
+  }
+
   function handleCreateTask() {
     navigate("/tasks/new");
   }
@@ -88,6 +99,7 @@ function HomePage() {
               <TaskList
                 tasks={tasks}
                 onViewDetails={(task) => navigate(`/tasks/${task.id}`)}
+                onDelete={handleDeleteTask}
               />
             )}
           </div>

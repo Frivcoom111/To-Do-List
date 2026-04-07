@@ -1,6 +1,6 @@
 import "./TasksList.css";
 
-function TaskList({ tasks, onViewDetails }) {
+function TaskList({ tasks, onViewDetails, onDelete }) {
   return (
     <div className="tasklist-wrapper">
       <ul className="tasklist-items">
@@ -19,6 +19,9 @@ function TaskList({ tasks, onViewDetails }) {
               <span className={task.status === true ? "task-badge task-badge-completed" : "task-badge task-badge-pending"}>{task.status === true ? "Concluída" : "Pendente"}</span>
               <button type="button" className="task-detail-button" onClick={() => onViewDetails?.(task)}>
                 Detalhes
+              </button>
+              <button type="button" className="task-delete-button" onClick={() => onDelete?.(task)}>
+                Deletar
               </button>
             </div>
           </li>

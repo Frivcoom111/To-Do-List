@@ -34,12 +34,29 @@ class TaskController {
         return response.status(404).json({ message: "ID usuário inválido." });
       }
 
-      const taskList = await taskService.listById(id);
+      const taskList = await taskService.listByUserId(id);
 
       response.status(200).json({
         message: "Tarefas listadas com sucesso.",
         tasks: taskList.tasks,
       });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async getTaskById(request, response, next) {
+    try {
+      const { id } = request.params;
+
+      const task = await taskService.getTaskById(id, request.userId);
+      if (!task) {
+        return response.status(404).json({ message: "Tarefa não existe." });
+      }
+
+      response
+        .status(200)
+        .json({ message: "Tarafe buscada com sucesso!", task: task.task });
     } catch (error) {
       next(error);
     }
@@ -73,9 +90,13 @@ class TaskController {
         return response.status(404).json({ message: "ID tarefa inválido." });
       }
 
-      const updatedTask = await taskService.updateStatus(status, idTask, userId);
+      const updatedTask = await taskService.updateStatus(
+        status,
+        idTask,
+        userId,
+      );
 
-      response.status(200).json({message: "Tarefa atualizada com sucesso!"})
+      response.status(200).json({ message: "Tarefa atualizada com sucesso!" });
     } catch (error) {
       next(error);
     }

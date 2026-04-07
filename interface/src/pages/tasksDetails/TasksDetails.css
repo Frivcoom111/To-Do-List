@@ -15,6 +15,7 @@
     ),
     linear-gradient(140deg, #eff4f8 0%, #e7eff6 100%);
   font-family: "Outfit", sans-serif;
+  margin-top: 3%;
 }
 
 .task-details-shell {
@@ -138,6 +139,65 @@
   border-color: rgba(59, 146, 110, 0.2);
   background: rgba(236, 249, 243, 0.92);
   color: #236b50;
+}
+
+.task-details-feedback-error {
+  border-color: rgba(185, 28, 28, 0.25);
+  background: rgba(254, 242, 242, 0.92);
+  color: #b91c1c;
+}
+
+.task-details-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  gap: 1rem;
+  color: #3a4852;
+  font-family: "Outfit", sans-serif;
+}
+
+.task-details-loader {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  border: 4px solid rgba(96, 112, 125, 0.2);
+  border-top-color: #ff6f3c;
+  border-right-color: #2f9ed8;
+  animation: task-loader-spin 0.9s linear infinite;
+}
+
+@keyframes task-loader-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.task-details-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: clamp(3rem, 8vw, 5rem) 1rem;
+  gap: 1rem;
+  color: #3a4852;
+}
+
+.task-details-error h1 {
+  font-family: "Syne", sans-serif;
+  color: #1f2a33;
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.task-details-error p {
+  max-width: 48ch;
+  color: #60707d;
+  font-size: 1rem;
+  line-height: 1.5;
 }
 
 .task-details-status-card {

@@ -22,8 +22,7 @@ function Navbar() {
                 {/* Menu Desktop */}
                 <ul className="navbar-menu">
                     <li><a href="/home">Tarefas</a></li>
-                    <li><a href="#stats">Estatísticas</a></li>
-                    <li><a href="#help">Ajuda</a></li>
+                    <li><a href="/tasks/new">Criar tarefa</a></li>
                 </ul>
 
                 {/* User Profile & Logout */}

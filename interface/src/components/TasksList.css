@@ -115,6 +115,33 @@
   transform: translateY(0);
 }
 
+.task-delete-button {
+  border: 1px solid rgba(220, 53, 69, 0.3);
+  background: #fff5f5;
+  color: #c53030;
+  font-family: "Outfit", sans-serif;
+  font-size: 0.74rem;
+  font-weight: 600;
+  padding: 0.34rem 0.66rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.task-delete-button:hover {
+  background: #e53e3e;
+  color: #fff;
+  border-color: #e53e3e;
+  transform: translateY(-1px);
+}
+
+.task-delete-button:active {
+  transform: translateY(0);
+}
+
 .task-badge-pending {
   color: #9a461f;
   background: rgba(255, 111, 60, 0.13);

@@ -41,7 +41,7 @@ class TaskService {
     };
   }
 
-  async listById(id) {
+  async listByUserId(id) {
     // Validando ID usuários
     const userExists = await this.user.findById(id);
     if (!userExists) {
@@ -55,6 +55,22 @@ class TaskService {
     };
   }
 
+  async getTaskById(idTask, userId) {
+    const taskExists = await this.task.findTaskById(idTask);
+
+    if (!taskExists) {
+      throw new Error("Tarefa não existe.");
+    }
+
+    if (String(taskExists.user_id) !== String(userId)) {
+      throw new Error("Tarefa não pertence a este usuário.");
+    }
+
+    return {
+      task: taskExists,
+    };
+  }
+
   async delete(idTask, userId) {
     const taskExists = await this.task.findTaskById(idTask);
 
@@ -62,7 +78,7 @@ class TaskService {
       throw new Error("Tarefa não existe.");
     }
 
-    if (taskExists.user_id != userId) {
+    if (String(taskExists.user_id) !== String(userId)) {
       throw new Error("Tarefa não pertence a este usuário.");
     }
 

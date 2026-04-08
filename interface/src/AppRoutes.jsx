@@ -5,6 +5,7 @@ import { Routes, Route } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 import CreateTaskPage from "./pages/createTask/CreateTaskPage";
 import TasksDetailsPage from "./pages/tasksDetails/TasksDetails";
+import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 
 function ProtectedRoute({ children }) {
   const token = localStorage.getItem("token");
@@ -80,6 +81,7 @@ function AppRoutes() {
             </ProtectedRoute>
           }
         />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </div>
   );

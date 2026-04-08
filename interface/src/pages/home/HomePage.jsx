@@ -12,6 +12,7 @@ function HomePage() {
 
   // useStates para atualização da variavel tasks posteriormente.
   const [tasks, setTasks] = useState([]);
+  const [filter, setFilter] = useState("all");
 
   // Requisição backend para poder carregar as tasks.
   useEffect(() => {
@@ -25,7 +26,8 @@ function HomePage() {
         }
       } catch (error) {
         console.log(error);
-        alert("Erro ao carregar tasks.");
+        const apiMessage = error?.response?.data?.message;
+        alert(apiMessage || "Erro ao carregar tasks.");
 
         localStorage.removeItem("token");
 
@@ -38,7 +40,7 @@ function HomePage() {
     return () => {
       ignore = true;
     };
-  }, []);
+  }, [navigate]);
 
   async function handleDeleteTask(task) {
     if (!confirm(`Deseja realmente deletar "${task.title}"?`)) return;
@@ -47,13 +49,20 @@ function HomePage() {
       setTasks((prev) => prev.filter((t) => t.id !== task.id));
     } catch (error) {
       console.log(error);
-      alert("Erro ao deletar tarefa.");
+      const apiMessage = error?.response?.data?.message;
+      alert(apiMessage || "Erro ao deletar tarefa.");
     }
   }
 
   function handleCreateTask() {
     navigate("/tasks/new");
   }
+
+  const filteredTasks = tasks.filter((task) => {
+    if (filter === "pending") return task.status === false;
+    if (filter === "completed") return task.status === true;
+    return true;
+  });
 
   return (
     <>
@@ -84,7 +93,11 @@ function HomePage() {
         <section className="tasks-container">
           <div className="tasks-header">
             <h2>Tarefas do dia</h2>
-            <select className="filter-select" defaultValue="all">
+            <select
+              className="filter-select"
+              value={filter}
+              onChange={(event) => setFilter(event.target.value)}
+            >
               <option value="all">Todas</option>
               <option value="pending">Pendentes</option>
               <option value="completed">Concluídas</option>
@@ -92,12 +105,11 @@ function HomePage() {
           </div>
 
           <div className="tasks-list">
-            {/* TODO: Adicionar condicional: tasks.length === 0 ? <empty-state /> : <tasks-list /> */}
-            {tasks.length === 0 ? (
+            {filteredTasks.length === 0 ? (
               <EmptyState onClick={handleCreateTask} />
             ) : (
               <TaskList
-                tasks={tasks}
+                tasks={filteredTasks}
                 onViewDetails={(task) => navigate(`/tasks/${task.id}`)}
                 onDelete={handleDeleteTask}
               />

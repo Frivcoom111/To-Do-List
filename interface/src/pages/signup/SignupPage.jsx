@@ -14,8 +14,13 @@ function SignupPage() {
     e.preventDefault();
 
     try {
-      if (password !== confirmPassword)
+      if (password.length < 6) {
+        return alert("A senha deve ter no mínimo 6 caracteres.");
+      }
+
+      if (password !== confirmPassword) {
         return alert("Senhas estão diferentes.");
+      }
 
       const response = await api.post(
         "auth/register",
@@ -32,7 +37,8 @@ function SignupPage() {
       navigate("/");
     } catch (error) {
       console.log(error);
-      alert("Erro ao criar usuário.");
+      const apiMessage = error?.response?.data?.message;
+      alert(apiMessage || "Erro ao criar usuário.");
     }
   }
 

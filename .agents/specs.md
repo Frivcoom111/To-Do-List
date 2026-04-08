@@ -25,7 +25,9 @@ Backend pronto com:
 Frontend atual:
 
 - Aplicacao React + Vite.
-- Tela de login criada (UI pronta), mas ainda sem integracao com API.
+- Fluxo de autenticacao integrado (login, cadastro, logout, token no localStorage).
+- Rotas protegidas para modulo de tarefas.
+- Modulo de tarefas integrado (listagem, criacao, exclusao, detalhe e update de status).
 
 ## 3) Requisitos Funcionais
 
@@ -97,6 +99,9 @@ Base URL backend: `http://localhost:3000`
 - GET `/task/list`
   - Retorna lista de tarefas do usuario autenticado.
 
+- GET `/task/list/:id`
+  - Retorna detalhe de uma tarefa do usuario autenticado.
+
 - PATCH `/task/update/:idTask`
   - Body: `{ "status": true|false }`
 
@@ -125,38 +130,38 @@ Base URL backend: `http://localhost:3000`
 
 ### Fase 1 - Integracao de Login no Front
 
-- [ ] Conectar formulario de login ao endpoint `/auth/login`.
-- [ ] Salvar token no `localStorage`.
-- [ ] Tratar mensagens de erro (credenciais invalidas, servidor offline).
-- [ ] Redirecionar para tela de tarefas apos login.
+- [x] Conectar formulario de login ao endpoint `/auth/login`.
+- [x] Salvar token no `localStorage`.
+- [x] Tratar mensagens de erro (credenciais invalidas, servidor offline).
+- [x] Redirecionar para tela de tarefas apos login.
 
 ### Fase 2 - Tela de Cadastro
 
-- [ ] Criar pagina de registro.
-- [ ] Integrar com `/auth/register`.
-- [ ] Validacoes de formulario (email valido, senha minima).
+- [x] Criar pagina de registro.
+- [x] Integrar com `/auth/register`.
+- [x] Validacoes de formulario (email valido, senha minima).
 
 ### Fase 3 - Modulo de Tarefas
 
-- [ ] Listagem de tarefas apos login.
-- [ ] Criacao de nova tarefa.
-- [ ] Alteracao de status (concluida/pendente).
-- [ ] Exclusao de tarefa.
+- [x] Listagem de tarefas apos login.
+- [x] Criacao de nova tarefa.
+- [x] Alteracao de status (concluida/pendente).
+- [x] Exclusao de tarefa.
 
 ### Fase 4 - Qualidade e UX
 
-- [ ] Loading states e feedback visual.
-- [ ] Empty states (sem tarefas).
-- [ ] Refino de layout responsivo.
-- [ ] Padronizar mensagens de erro backend/frontend.
+- [x] Loading states e feedback visual.
+- [x] Empty states (sem tarefas).
+- [x] Refino de layout responsivo.
+- [~] Padronizar mensagens de erro backend/frontend (frontend ajustado; backend ainda sem middleware global).
 
 ## 9) Criterios de Pronto (Definition of Done)
 
-- [ ] Funcionalidade implementada no frontend.
-- [ ] Endpoint correspondente funcionando no backend.
-- [ ] Fluxo testado manualmente (sucesso + erro).
-- [ ] Validacoes minimas aplicadas.
-- [ ] Sem erros de lint/build.
+- [x] Funcionalidade implementada no frontend.
+- [x] Endpoint correspondente funcionando no backend.
+- [x] Fluxo testado manualmente (sucesso + erro).
+- [x] Validacoes minimas aplicadas.
+- [x] Sem erros de lint/build.
 
 ## 10) Riscos Tecnicos Atuais
 
@@ -174,12 +179,9 @@ Backend (`backend/.env`):
 
 ## 12) Proxima Entrega Sugerida
 
-Implementar fluxo completo de autenticacao no frontend:
+Concluir padronizacao de erros no backend:
 
-1. Login chama API.
-2. Token salvo localmente.
-3. Rota protegida para pagina de tarefas.
-4. Botao de logout removendo token.
-
-
-
+1. Adicionar middleware global de erro em `backend/src/app.js`.
+2. Ajustar codigos HTTP para 400/401/403/404 conforme regra de negocio.
+3. Definir formato unico de resposta de erro (`message`, `code`, `details`).
+4. Revisar mensagens de erro para melhorar UX no frontend.

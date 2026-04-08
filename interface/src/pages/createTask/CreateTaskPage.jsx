@@ -28,7 +28,8 @@ function CreateTaskPage() {
       navigate("/home");
     } catch (error) {
       console.log(error);
-      alert("Erro ao criar task.");
+      const apiMessage = error?.response?.data?.message;
+      alert(apiMessage || "Erro ao criar task.");
 
       navigate("/home");
     }
@@ -94,10 +95,10 @@ function CreateTaskPage() {
                 id="status"
                 required
                 value={status}
-                onChange={(e) => setStatus(e.target.value)}
+                onChange={(e) => setStatus(e.target.value === "true")}
               >
-                <option value={false}>Pendente</option>
-                <option value={true}>Concluida</option>
+                <option value="false">Pendente</option>
+                <option value="true">Concluida</option>
               </select>
             </div>
 

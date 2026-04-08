@@ -28,7 +28,8 @@ function LoginPage() {
       navigate("/home");
     } catch (error) {
       console.log(error);
-      alert("Erro ao tentar logar.");
+      const apiMessage = error?.response?.data?.message;
+      alert(apiMessage || "Erro ao tentar logar.");
     }
   }
 

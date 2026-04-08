@@ -2,7 +2,7 @@ import axios from "axios";
 
 // Configuração request backend
 const api = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: import.meta.env.VITE_API_URL || "http://localhost:3000",
 });
 
 let activeRequests = 0;
@@ -19,7 +19,7 @@ function hideLoader() {
 api.interceptors.request.use((config) => {
   activeRequests += 1;
   showLoader();
-  
+
   // Rotas que não precisam de token
   if (config.public) {
     return config;
@@ -52,6 +52,10 @@ api.interceptors.response.use(
 
     if (activeRequests === 0) {
       hideLoader();
+    }
+
+    if (error?.response?.status === 401) {
+      localStorage.removeItem("token");
     }
 
     return Promise.reject(error);

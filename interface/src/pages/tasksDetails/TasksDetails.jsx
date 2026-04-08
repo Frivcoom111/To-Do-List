@@ -18,9 +18,7 @@ function TasksDetailsPage() {
       try {
         const response = await api.get(`task/list/${taskId}`);
 
-        console.log(response.data)
-
-        const selectedTask = response.data.task
+        const selectedTask = response.data.task;
 
         if (!ignore) {
           if (!selectedTask) {
@@ -32,7 +30,8 @@ function TasksDetailsPage() {
       } catch (error) {
         console.error(error);
         if (!ignore) {
-          setErrorMessage("Erro ao carregar a tarefa.");
+          const apiMessage = error?.response?.data?.message;
+          setErrorMessage(apiMessage || "Erro ao carregar a tarefa.");
         }
       }
     }
@@ -57,7 +56,8 @@ function TasksDetailsPage() {
       setTimeout(() => setSuccessMessage(""), 3000);
     } catch (error) {
       console.error(error);
-      setErrorMessage("Erro ao atualizar a tarefa.");
+      const apiMessage = error?.response?.data?.message;
+      setErrorMessage(apiMessage || "Erro ao atualizar a tarefa.");
       setTimeout(() => setErrorMessage(""), 3000);
     }
   }

@@ -140,11 +140,26 @@ Base URL sugerida local: `http://localhost:3000`
 - `POST /task/create`
   - body: `{ "title", "type", "status", "description", "priority" }`
 - `GET /task/list`
+- `GET /task/list/:id`
+  - retorna uma tarefa especifica do usuario autenticado.
 - `PATCH /task/update/:idTask`
   - body: `{ "status": true|false }`
 - `DELETE /task/delete/:idTask`
 
-## 8) Variaveis de Ambiente
+## 8.1) Integracao Frontend (abril/2026)
+
+Fluxos integrados no frontend React:
+
+- Login com `POST /auth/login` e persistencia de token em `localStorage`.
+- Cadastro com `POST /auth/register` e validacao minima de senha.
+- Rotas protegidas no cliente (`/home`, `/tasks/new`, `/tasks/:taskId`).
+- Listagem de tarefas com filtro (todas/pendentes/concluidas).
+- Criacao de tarefa com envio correto de `status` boolean.
+- Exclusao de tarefa em lista.
+- Tela de detalhes carregando por `GET /task/list/:id` e atualizacao de status via `PATCH /task/update/:idTask`.
+- Logout removendo token e redirecionando para login.
+
+## 9) Variaveis de Ambiente
 
 Referencia em [backend/.env.example](backend/.env.example):
 
@@ -158,14 +173,14 @@ Exemplo local:
 - `DATABASE_URL=postgres://usuario:senha@localhost:5432/todolist`
 - `JWT_SECRET=sua_chave_super_secreta`
 
-## 9) Pontos Fortes
+## 10) Pontos Fortes
 
 - Boa separacao de responsabilidades por camada.
 - Regras de ownership de tarefa ja implementadas.
 - Uso de SQL parametrizado, reduzindo risco de SQL Injection.
 - Uso de hash de senha e JWT.
 
-## 10) Riscos e Ajustes Recomendados
+## 11) Riscos e Ajustes Recomendados
 
 ### Risco 1: tratamento de erro inconsistente
 
@@ -204,7 +219,7 @@ Acao:
 
 - Criar testes de integracao para auth/task.
 
-## 11) SQL Esperado (Base)
+## 12) SQL Esperado (Base)
 
 Sugestao minima de schema para rodar o backend:
 
@@ -227,7 +242,7 @@ CREATE TABLE tasks (
 );
 ```
 
-## 12) Backlog Tecnico Priorizado
+## 13) Backlog Tecnico Priorizado
 
 ### Prioridade Alta
 
@@ -246,7 +261,7 @@ CREATE TABLE tasks (
 - [ ] Adicionar logs estruturados.
 - [ ] Criar documentacao OpenAPI/Swagger.
 
-## 13) Fluxo Resumido da Requisicao
+## 14) Fluxo Resumido da Requisicao
 
 1. Request chega na rota.
 2. Se for `/task`, passa pelo middleware `auth` e injeta `userId`.
